@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { useGLTF, useAnimations, useScroll, ScrollControls, SoftShadows } from "@react-three/drei"
+import { useGLTF, useAnimations, useScroll, ScrollControls, SoftShadows, OrbitControls } from "@react-three/drei"
 import { EffectComposer, TiltShift2 } from "@react-three/postprocessing"
 
 function Model(props) {
@@ -22,6 +22,9 @@ export const App = () => (
   <Canvas shadows gl={{ antialias: false }} camera={{ position: [1, 0.5, 2.5], fov: 50 }}>
     <color attach="background" args={["#f0f0f0"]} />
     <fog attach="fog" args={["#f0f0f0", 0, 20]} />
+    <OrbitControls
+      enableZoom={false}
+    />
     <ambientLight intensity={0.5} />
     <directionalLight intensity={2} position={[-5, 5, 5]} castShadow shadow-mapSize={2048} shadow-bias={-0.0001} />
     <ScrollControls damping={0.2} maxSpeed={0.5} pages={2}>
