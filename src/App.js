@@ -4,13 +4,10 @@ import { useGLTF, useAnimations, useScroll, ScrollControls, SoftShadows } from "
 import { EffectComposer, TiltShift2 } from "@react-three/postprocessing"
 
 function Model(props) {
+
   const scroll = useScroll()
-  console.log("scroll: ", scroll)
   const { nodes, materials, animations } = useGLTF("/jump-transformed.glb")
-  console.log("animations: ", animations)
   const { ref, actions } = useAnimations(animations)
-  console.log("ref: ", ref)
-  console.log("actions: ", actions)
   useEffect(() => void (actions.jump.reset().play().paused = true), [])
   useFrame(() => (actions.jump.time = actions.jump.getClip().duration * scroll.offset))
   return (
